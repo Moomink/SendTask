@@ -2,7 +2,9 @@ package com.moomink.sendtask
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -17,12 +19,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
+
+
+
+
     var cnt = 0
+
+
 
 
     /*getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)*/
-    fun noti(view: View){
+     fun notification(view: View){
         val words:String = editText.text.toString()
         val title:String = Title.text.toString()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -32,6 +40,11 @@ class MainActivity : AppCompatActivity() {
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             val channel = NotificationChannel(id,name,importance)
                                                 .apply{description = descriptionText}
+
+//            var intent:Intent = Intent(this,Close_Notification)
+//            val Result:PendingIntent = PendingIntent(this,cnt,)
+
+
             val task = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             task.createNotificationChannel(channel)
 
@@ -39,6 +52,9 @@ class MainActivity : AppCompatActivity() {
                 .setContentText(words)
                 .setContentTitle(title)
                 .setSmallIcon(R.drawable.icon_notification)
+                .setOngoing(true)
+//                .addAction(R.drawable.icon_notification,"完了",)
+
 
             task.notify(cnt,base.build())
         }else{
@@ -47,7 +63,11 @@ class MainActivity : AppCompatActivity() {
             val base:NotificationCompat.Builder = NotificationCompat.Builder(applicationContext)
                 .setContentText(words)
                 .setContentTitle(title)
+                .setContentInfo(title)
                 .setSmallIcon(R.drawable.icon_notification)
+
+//            var intent = Intent(this,Close_Notification.class)
+
 
             task.notify(cnt,base.build())
         }
@@ -55,6 +75,10 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("Debug",cnt.toString())
         cnt++
+    }
+     fun close_Notification(view:View){
+         val task = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        task.cancelAll()
     }
 
 }
