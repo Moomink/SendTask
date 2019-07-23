@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">SendTask</string>
     <string name="send_to_task">Send to Task</string>
-    <string name="input_task">Input Task</string>
+    <string name="ToDo">To Do</string>
     <string name="clear_task">Clear Task</string>
     <string name="channel_name">SendTask</string>
-    <string name="channel_ID">907</string>
-    <string name="description">TEST Notification</string>
+    <string name="channel_ID">3295</string>
+    <string name="description">Send Task</string>
     <string name="Title">Title</string>
+    <string name = "Sub">Sub Title</string>
     <string name="cansel">Cansel</string>
+    <string name="Sent">Sent Task!</string>
 </resources>

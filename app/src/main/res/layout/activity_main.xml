@@ -24,23 +24,25 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/editText"
-            android:hint="@string/input_task" android:autofillHints=""
+            android:autofillHints=""
             tools:targetApi="o"
             android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"/>
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:hint="@string/ToDo"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/Title"
-            android:hint="@string/Title" android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="8dp"
+            android:id="@+id/SubTitle"
+            android:hint="@string/Sub" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="@+id/editText" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/editText" android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/Send" android:layout_marginBottom="8dp" android:autofillHints="" tools:targetApi="o"/>
+            app:layout_constraintBottom_toTopOf="@+id/Send" android:layout_marginBottom="8dp" android:autofillHints=""
+            tools:targetApi="o"/>
     <Button
             android:text="@string/cansel"
             android:layout_width="wrap_content"
@@ -49,4 +51,15 @@
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="@+id/Send" android:onClick="close_Notification"/>
+    <EditText
+            android:layout_width="151dp"
+            android:layout_height="61dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/Title" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="@+id/SubTitle" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/SubTitle" android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="@+id/editText"
+            android:textSize="24sp" android:hint="@string/Title" android:autofillHints="" tools:targetApi="o"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,9 +2,7 @@ package com.moomink.sendtask
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -32,13 +30,13 @@ class MainActivity : AppCompatActivity() {
         notificationManager.createNotificationChannel(channel)*/
      fun notification(view: View){
         val words:String = editText.text.toString()
+        val subTitle:String = SubTitle.text.toString()
         val title:String = Title.text.toString()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = getString(R.string.channel_name)
             val id = getString(R.string.channel_ID)
             val descriptionText = getString(R.string.description)
             val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(id,name,importance)
+            val channel = NotificationChannel(id, title,importance)
                                                 .apply{description = descriptionText}
 
 //            var intent:Intent = Intent(this,Close_Notification)
@@ -50,9 +48,11 @@ class MainActivity : AppCompatActivity() {
 
             val base:NotificationCompat.Builder = NotificationCompat.Builder(applicationContext,id)
                 .setContentText(words)
-                .setContentTitle(title)
+                .setContentInfo(title)
+                .setContentTitle(subTitle)
                 .setSmallIcon(R.drawable.icon_notification)
                 .setOngoing(true)
+                .setTicker(getString(R.string.Sent))
 //                .addAction(R.drawable.icon_notification,"完了",)
 
 
@@ -61,9 +61,10 @@ class MainActivity : AppCompatActivity() {
             val task = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
             val base:NotificationCompat.Builder = NotificationCompat.Builder(applicationContext)
-                .setContentText(words)
+                .setContentText(subTitle)
                 .setContentTitle(title)
                 .setContentInfo(title)
+                .setTicker(getString(R.string.Sent))
                 .setSmallIcon(R.drawable.icon_notification)
 
 //            var intent = Intent(this,Close_Notification.class)
