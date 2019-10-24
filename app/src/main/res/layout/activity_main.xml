@@ -44,7 +44,7 @@
             app:layout_constraintBottom_toTopOf="@+id/Send" android:layout_marginBottom="8dp" android:autofillHints=""
             tools:targetApi="o"/>
     <Button
-            android:text="@string/cansel"
+            android:text="@string/cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/Cansel" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"

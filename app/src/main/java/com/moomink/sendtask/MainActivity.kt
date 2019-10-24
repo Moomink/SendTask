@@ -9,9 +9,9 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
-import androidx.core.os.bundleOf
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -33,9 +33,13 @@ class MainActivity : AppCompatActivity() {
         val words: String = TEXT.text.toString()
         val title: String = Title.text.toString()
         val test: String = SubTitle.text.toString()
+        if (words == "" || title == "") {
+            Toast.makeText(this, "文字を入力してください", Toast.LENGTH_LONG).show()
+            return
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = getString(R.string.channel_name)
-            val id = getString(R.string.channel_ID)
+            val id: String = getString(R.string.channel_ID)
             val descriptionText = getString(R.string.description)
             val importance = NotificationManager.IMPORTANCE_HIGH
             val channel = NotificationChannel(id, name, importance)  //TODO チャンネル整理
@@ -44,10 +48,11 @@ class MainActivity : AppCompatActivity() {
             val task = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
             task.createNotificationChannel(channel)
-            val intent: Intent = Intent(this, Close_Notification::class.java)
-                .putExtra("ID", cnt)
+            val intent: Intent = Intent(this.applicationContext, Close_Notification::class.java) //Intent 何でも入るので色々入れてる
+                .putExtra("Notification_ID", cnt)
+                .putExtra("Notification_Channel_ID", id)
             val result: PendingIntent =
-                PendingIntent.getActivity(this, cnt, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+                PendingIntent.getForegroundService(this, cnt, intent, 0) //FIXME なんとかしろ
 
             val base: NotificationCompat.Builder =
                 NotificationCompat.Builder(applicationContext, id)
@@ -56,14 +61,14 @@ class MainActivity : AppCompatActivity() {
                     .setContentInfo(test)
                     .setSmallIcon(R.drawable.icon_notification)
                     .setOngoing(true)
-                    .addAction(R.drawable.icon_notification, "完了", result) //FIXME ここらへんからエラーをはいてるかも
+                    .addAction(R.drawable.icon_notification, "完了", result)
 
 
             task.notify(cnt, base.build())   //fixme cntをどうにかする
         } else {
             // val task = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-            val base: NotificationCompat.Builder = NotificationCompat.Builder(applicationContext)
+            val base: NotificationCompat.Builder = NotificationCompat.Builder(this)
                 .setContentText(words)
                 .setContentTitle(title)
                 .setSubText(test)

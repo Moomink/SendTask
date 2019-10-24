@@ -8,6 +8,6 @@
     <string name="description">Send Task</string>
     <string name="Title">Title</string>
     <string name = "Sub">Sub Title</string>
-    <string name="cansel">Cansel</string>
+    <string name="cancel">Cancel</string>
     <string name="Sent">Sent Task!</string>
 </resources>
