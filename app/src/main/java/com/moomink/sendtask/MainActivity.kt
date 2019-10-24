@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity() {
             task.createNotificationChannel(channel)
             val intent: Intent = Intent(this.applicationContext, Close_Notification::class.java) //Intent 何でも入るので色々入れてる
                 .putExtra("Notification_ID", cnt)
-                .putExtra("Notification_Channel_ID", id)
             val result: PendingIntent =
                 PendingIntent.getForegroundService(this, cnt, intent, 0) //FIXME なんとかしろ
 
@@ -87,6 +86,7 @@ class MainActivity : AppCompatActivity() {
     fun closeAll(view: View) {
         val task = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         task.cancelAll()
+        cnt = 0
     }
 
 }
