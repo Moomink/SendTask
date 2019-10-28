@@ -48,7 +48,10 @@ class MainActivity : AppCompatActivity() {
             val task = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
             task.createNotificationChannel(channel)
-            val intent: Intent = Intent(this.applicationContext, Close_Notification::class.java) //Intent 何でも入るので色々入れてる
+            val intent: Intent = Intent(
+                this.applicationContext,
+                Close_Notification::class.java
+            ) //Intent 何でも入るので色々入れてる
                 .putExtra("Notification_ID", cnt)
             val result: PendingIntent =
                 PendingIntent.getForegroundService(this, cnt, intent, 0) //FIXME なんとかしろ

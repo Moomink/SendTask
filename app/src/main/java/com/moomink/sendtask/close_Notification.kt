@@ -13,12 +13,12 @@ class Close_Notification : Service() {
     override fun onCreate() {
         super.onCreate()
         Log.d("CHECK", "OK_Create")
-        val notification:NotificationCompat.Builder =
-            NotificationCompat.Builder(applicationContext,getString(R.string.channel_ID))
+        val notification: NotificationCompat.Builder =
+            NotificationCompat.Builder(applicationContext, getString(R.string.channel_ID))
                 .setContentTitle("TEST")
                 .setContentText("testdayo")
                 .setSmallIcon(R.drawable.icon_notification)
-        startForeground(1,notification.build())
+        startForeground(1, notification.build())
 
     }
 
@@ -35,12 +35,12 @@ class Close_Notification : Service() {
         } else {
             Log.d("CHECK", "OK")
             val task = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            val data: Int = reIntent.getIntExtra("ID", 0)
+            val data: Int = reIntent.getIntExtra("Notification_ID", 0)
             task.cancel(data)
-            Log.i("CHECK",data.toString())
+            Log.i("CHECK", "ID:$data")
         }
         stopSelf()
-        Log.d("CHECK","FINISHED")
+        Log.d("CHECK", "FINISHED")
         return START_NOT_STICKY
     }
 }
