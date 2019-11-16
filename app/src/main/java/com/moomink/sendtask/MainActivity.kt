@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
+import kotlin.random.Random
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    var cnt = 0
+    var cnt = Random.nextInt()
 
 
     /*getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         val words: String = TEXT.text.toString()
         val title: String = Title.text.toString()
-        val test: String = SubTitle.text.toString()
+        val subtitle: String = SubTitle.text.toString()
         if (words == "" || title == "") {
             Toast.makeText(this, "文字を入力してください", Toast.LENGTH_LONG).show()
             return
@@ -60,7 +61,8 @@ class MainActivity : AppCompatActivity() {
                 NotificationCompat.Builder(applicationContext, id)
                     .setContentTitle(title)
                     .setContentText(words)
-                    .setContentInfo(test)
+                    .setContentInfo(subtitle)
+                    .setSubText(subtitle)
                     .setSmallIcon(R.drawable.icon_notification)
                     .setOngoing(true)
                     .addAction(R.drawable.icon_notification, "完了", result)
@@ -73,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             val base: NotificationCompat.Builder = NotificationCompat.Builder(this)
                 .setContentText(words)
                 .setContentTitle(title)
-                .setSubText(test)
+                .setSubText(subtitle)
                 .setSmallIcon(R.drawable.icon_notification)
 
 //            var intent = Intent(this,Close_Notification.class)
@@ -89,7 +91,7 @@ class MainActivity : AppCompatActivity() {
     fun closeAll(view: View) {
         val task = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         task.cancelAll()
-        cnt = 0
+        cnt = Random.nextInt()
     }
 
 }
